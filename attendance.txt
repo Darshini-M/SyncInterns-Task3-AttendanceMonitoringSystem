@@ -1,0 +1,5 @@
+ABC 1 0
+BCD 2 0
+ABC 1 1
+BCD 2 1
+CDE 3 0
