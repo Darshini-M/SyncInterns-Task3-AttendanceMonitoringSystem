@@ -54,12 +54,12 @@ void searchStudent(Student students[], int size)
 {
     string searchName;
     int searchID;
-    bool found = false;
     cout << "Enter name or ID of student to search: ";
     cin.ignore();
     getline(cin, searchName);
-    cin.clear();
+    cout << "Enter student ID: ";
     cin >> searchID;
+    bool found = false;
     for (int i = 0; i < size; i++)
     {
         if (students[i].name == searchName && students[i].id == searchID)
@@ -168,7 +168,6 @@ void addStudent(Student students[], int &size)
     }
 }
 
-
 int main()
 {
     Student students[MAX_STUDENTS];
@@ -179,12 +178,12 @@ int main()
     while (choice != 0)
     {
         cout << "Attendance Monitoring System" << endl;
-        cout << "1. View attendance data" << endl;
-        cout << "2. Search for a student" << endl;
-        cout << "3. Edit attendance data for a student" << endl;
-        cout << "4. View attendance history for a student" << endl;
-        cout << "5. Export attendance data" << endl;
-        cout << "6. Add Student" << endl;
+        cout << "1. Add Student" << endl;
+        cout << "2. View attendance data" << endl;
+        cout << "3. Search for a student" << endl;
+        cout << "4. Edit attendance data for a student" << endl;
+        cout << "5. View attendance history for a student" << endl;
+        cout << "6. Export attendance data" << endl;
         cout << "0. Exit" << endl;
         cout << "Enter your choice: ";
         cin >> choice;
@@ -192,24 +191,24 @@ int main()
         switch (choice)
         {
         case 1:
-            printData(students, size);
+            addStudent(students, size);
+            saveData(students, size);
             break;
         case 2:
-            searchStudent(students, size);
+            printData(students, size);
             break;
         case 3:
+            searchStudent(students, size);
+            break;
+        case 4:
             editAttendance(students, size);
             saveData(students, size);
             break;
-        case 4:
+        case 5:
             attendanceHistory(students, size);
             break;
-        case 5:
-            exportData(students, size);
-            break;
         case 6:
-            addStudent(students, size);
-            saveData(students, size);
+            exportData(students, size);
             break;
         case 0:
             saveData(students, size);
@@ -221,4 +220,5 @@ int main()
         }
         cout << endl;
     }
-    return 0;}
+    return 0;
+}
